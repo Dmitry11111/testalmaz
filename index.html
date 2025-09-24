@@ -1,0 +1,1393 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Школа 21 и НМИЦ им. В.А. Алмазова | Биоинформатика и ИИ-технологии в медицине</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link rel="stylesheet" href="css/fontawesome.min.css">
+   <link rel="stylesheet" href="css/solid.min.css"> <!-- для "fas" -->
+    <style>
+        :root {
+            --primary: #0066cc;
+            --primary-dark: #0052a3;
+            --secondary: #00d4aa;
+            --secondary-dark: #00b08a;
+            --accent: #667eea;
+            --dark: #1a1a1a;
+            --text-gray: #4a5568;
+            --light-gray: #f8fafc;
+            --white: #ffffff;
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            --border-radius: 16px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .logo {
+            height: 48px;
+            transition: var(--transition);
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 32px;
+            align-items: center;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 15px;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        nav a:hover {
+            color: var(--primary);
+        }
+        
+        nav a:not(.btn)::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -8px;
+            left: 50%;
+            background: var(--primary);
+            transition: var(--transition);
+            transform: translateX(-50%);
+        }
+        
+        nav a:not(.btn):hover::after {
+            width: 100%;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white !important;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--secondary), #00b4d8);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--dark);
+        }
+        
+        /* Hero Section */
+         .hero {
+            background:url('13213.jpg') center/cover;
+           
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 56, 102, 0.2);
+            opacity: 0.8;}
+        .hero-content {
+             padding-top: 60px;  /* отступ сверху от шапки */
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 24px;
+            line-height: 1.1;
+            background: linear-gradient(135deg, #fff, #e2e8f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero h3 {
+            font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+            font-weight: 500;
+            margin-bottom: 20px;
+            opacity: 0.9;
+            line-height: 1.4;
+        }
+        
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.1rem);
+            margin-bottom: 32px;
+            opacity: 0.8;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+        
+        .hero .btn {
+            font-size: 16px;
+            padding: 16px 32px;
+            margin-top: 16px;
+        }
+        
+        /* Floating elements */
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        
+        .floating-element {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 20s infinite linear;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(100vh) scale(0); }
+            10% { transform: translateY(90vh) scale(1); }
+            90% { transform: translateY(-10vh) scale(1); }
+            100% { transform: translateY(-20vh) scale(0); }
+        }
+        
+        /* Section styles */
+        section {
+            padding: 120px 0;
+        }
+        
+        /* section:nth-child(even) {
+            background: var(--light-gray);
+        } */
+        
+        .section-title {
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 24px;
+            color: var(--dark);
+        }
+        
+        .section-subtitle {
+            font-size: 1.1rem;
+            text-align: center;
+            color: var(--text-gray);
+            max-width: 600px;
+            margin: 0 auto 60px;
+            line-height: 1.6;
+        }
+        
+  /*КОМУ*/
+
+.for-whom {
+  position: relative;
+  padding: 80px 0;
+  color: white;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  text-align: center;
+  overflow: hidden; /* чтобы картинка не вылезала за границы */
+}
+
+.for-whom::after {
+  
+  content: "";
+  position: absolute;
+  inset: 0; /* заменяет top/right/bottom/left: 0 */
+  background: 
+    url("SCHOOL21.svg") no-repeat right 40px top 20px,
+    url("newlogo12.svg") no-repeat left 40px bottom 20px;
+  background-size: 250px, 150px; /* размеры для первой и второй картинки */
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+
+.for-whom .section-title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.for-whom .section-subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 40px;
+  color: #f0f0f0;
+}
+
+.for-whom-card {
+  max-width: 600px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  color: var(--text-gray, #333);
+  font-size: 1.1rem;
+}
+
+
+        /* Benefits Grid */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 32px;
+            margin-top: 60px;
+        }
+        
+        .benefit-card {
+            background: var(--white);
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .benefit-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .benefit-card h3 {
+            color: var(--primary);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+        
+        .benefit-card p {
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+        
+        /* Steps Section */
+        .steps-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .step {
+            display: flex;
+            gap: 32px;
+            margin-bottom: 48px;
+            align-items: flex-start;
+            position: relative;
+        }
+        
+        .step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 32px;
+            top: 80px;
+            width: 2px;
+            height: calc(100% + 8px);
+            background: linear-gradient(to bottom, var(--primary), transparent);
+            opacity: 0.3;
+        }
+        
+        .step-number {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            flex-shrink: 0;
+            box-shadow: var(--shadow);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .step-content {
+            flex: 1;
+            padding-top: 8px;
+        }
+        
+        .step-content h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--dark);
+        }
+        
+        .step-content p {
+            color: var(--text-gray);
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+        
+        .step-content strong {
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        /* Program Tracks */
+        .program-tracks {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .track {
+            background: var(--white);
+            padding: 48px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+        
+        .track::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+        }
+        
+        .track:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .track h3 {
+            color: var(--primary);
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        
+        .track h4 {
+            color: var(--dark);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+        
+        .track ul {
+            list-style: none;
+            margin: 24px 0;
+        }
+        
+        .track li {
+            margin-bottom: 12px;
+            padding-left: 24px;
+            position: relative;
+            color: var(--text-gray);
+            line-height: 1.5;
+        }
+        
+        .track li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        /* Campus Section */
+        .campus-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-top: 60px;
+        }
+        
+        .campus-info {
+            padding-right: 20px;
+        }
+        
+        .campus-description {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            line-height: 1.7;
+            margin-bottom: 32px;
+        }
+        
+        .campus-features {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 32px;
+            margin-bottom: 32px;
+            box-shadow: var(--shadow);
+        }
+        
+        .feature-list {
+            list-style: none;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+            padding: 16px;
+            border-radius: 12px;
+            background: rgba(102, 126, 234, 0.05);
+            transition: var(--transition);
+        }
+        
+        .feature-item:hover {
+            background: rgba(102, 126, 234, 0.1);
+            transform: translateX(8px);
+        }
+        
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--secondary), #00b4d8);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 16px;
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .feature-icon i {
+  font-size: 20px;
+  color: white; /* иконка белая на градиенте */
+}
+
+        .campus-address {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 24px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .campus-gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        
+        .gallery-item {
+            
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            height: 200px;
+            position: relative;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .gallery-item-large {
+            grid-column: span 2;
+            height: 250px;
+        }
+        
+        /* Skills List */
+        .skills-list {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .skills-list ul {
+            list-style: none;
+            margin-bottom: 40px;
+        }
+        
+        .skills-list li {
+            margin-bottom: 16px;
+            padding: 20px 24px;
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            position: relative;
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            border-left: 4px solid var(--secondary);
+            text-align: left;
+            transition: var(--transition);
+        }
+        
+        .skills-list li:hover {
+            transform: translateX(8px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .skills-list li:first-child {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            font-weight: 600;
+            font-size: 1.2rem;
+            border-left: none;
+        }
+        
+        /* Registration Form */
+        .registration-section {
+            background: linear-gradient(135deg, var(--light-gray), #e2e8f0);
+        }
+        
+        .registration-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 48px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .form-group {
+            margin-bottom: 24px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            font-size: 16px;
+            transition: var(--transition);
+            background: var(--white);
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        /* FAQ */
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+        
+        .faq-item:hover {
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .faq-question {
+            padding: 24px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+            background: var(--white);
+        }
+        
+        .faq-question:hover {
+            background: var(--light-gray);
+        }
+        
+        .faq-question::after {
+            content: '+';
+            font-size: 24px;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+        
+        .faq-item.active .faq-question::after {
+            transform: rotate(45deg);
+        }
+        
+        .faq-answer {
+            display: none;
+            padding: 0 24px 24px;
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+        
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+        
+        /* Footer */
+        footer {
+             background:linear-gradient(135deg, var(--primary), var(--accent));
+            /* background: var(--dark); */
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            margin-left: 32px;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 32px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .footer-bottom p {
+            margin-bottom: 8px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 16px;
+            }
+            
+            .header-container {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 12px 0;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                width: 100%;
+                display: none;
+                margin-top: 16px;
+                gap: 16px;
+            }
+            
+            nav.active ul {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                right: 16px;
+                top: 16px;
+            }
+            
+            section {
+                padding: 80px 0;
+            }
+            
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .program-tracks {
+                grid-template-columns: 1fr;
+            }
+            
+            .campus-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .campus-info {
+                padding-right: 0;
+            }
+            
+            .step {
+                gap: 20px;
+            }
+            
+            .step:not(:last-child)::after {
+                left: 22px;
+            }
+            
+            .step-number {
+                width: 48px;
+                height: 48px;
+                font-size: 1.2rem;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 24px;
+            }
+            
+            .footer-links {
+                display: flex;
+                flex-direction: column;
+                gap: 16px;
+            }
+            
+            .footer-links a {
+                margin: 0;
+            }
+        }
+        
+        /* Animation for page load */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-in {
+            animation: fadeInUp 0.6s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo-container">
+                <img src="school21_logo1.svg" alt="Школа 21" class="logo">
+                <img src="logo_finalmaz1.svg" alt="НМИЦ им. В.А. Алмазова" class="logo">
+            </div>
+            <button class="mobile-menu-btn">☰</button>
+            <nav>
+                <ul>
+                    <li><a href="#about">О программе</a></li>
+                    <li><a href="#tracks">Кому подойдет</a></li>
+                    <li><a href="#admission">Как поступить</a></li>
+                    <li><a href="#campus">Кампус</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#contacts">Контакты</a></li>
+                    <li><a href="#registration" class="btn">Регистрация</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="floating-elements">
+            <div class="floating-element" style="left: 10%; width: 20px; height: 20px; animation-delay: 0s;"></div>
+            <div class="floating-element" style="left: 20%; width: 15px; height: 15px; animation-delay: 2s;"></div>
+            <div class="floating-element" style="left: 80%; width: 25px; height: 25px; animation-delay: 4s;"></div>
+            <div class="floating-element" style="left: 70%; width: 18px; height: 18px; animation-delay: 6s;"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content animate-in">
+                <h1>НАУЧИСЬ СОЗДАВАТЬ БУДУЩЕЕ С ПОМОЩЬЮ ИИ</h1>
+                <h2>Совместный кампус ИМО и «Школы 21». Синергия науки, индустрии и практики.</h2>
+                <p>Стартуйте карьеру будущего в сфере цифровой медицины вместе с совместным кампусом «Школы 21» и НМИЦ им. В.А. Алмазова. Получите практические навыки в области биоинформатики, анализа данных и ИИ, необходимые для успешной карьеры в современной медицине.</p>
+                <p><strong>Старт: 2 декабря 2025</strong></p>
+                <a href="#registration" class="btn">Зарегистрироваться</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">Обучение, ведущее к реальным результатам</h2>
+            <p class="section-subtitle">Получите навыки, которые востребованы уже сегодня и будут актуальны завтра</p>
+            <div class="benefits-grid">
+                <div class="benefit-card animate-in">
+                    <h3>РЕШАЙТЕ НАСТОЯЩИЕ МЕДИЦИНСКИЕ ПРОБЛЕМЫ</h3>
+                    <p>Программа обучения ИТ-навыкам строится через решение проектов, адаптированных для медицинский кейсов.</p>
+                </div>
+                <div class="benefit-card animate-in">
+                    <h3>ПОВЫШАЙТЕ КВАЛИФИКАЦИЮ</h3>
+                    <p>В результате освоения программы участник становится младшим специалистом (junior) в области биоинформатики с навыками в ИИ-технологиях.</p>
+                </div>
+                <div class="benefit-card animate-in">
+                    <h3>ПОЛУЧИТЕ АКТУАЛЬНЫЕ ЗНАНИЯ</h3>
+                    <p>Программа составлена практиками в сфере MedTech и специалистами НМИЦ им.Алмазова с учетом реальных кейсов и трендов.</p>
+                </div>
+                <div class="benefit-card animate-in">
+                    <h3>РАСШИРЯЙТЕ КРУГОЗОР</h3>
+                    <p>Методика обучения «равный — равному» дает возможность увидеть разные взгляды и расширить профессиональный кругозор.</p>
+                </div>
+                <div class="benefit-card animate-in">
+                    <h3>СОВМЕЩАЙТЕ С РАБОТОЙ/УЧЕБОЙ</h3>
+                    <p>Образовательный трек учитывает нагрузку работников сферы медицины и позволяет самостоятельно планировать обучение.</p>
+                </div>
+                <div class="benefit-card animate-in">
+                    <h3>ПОЛУЧИТЕ ДОСТУП К КОВОРКИНГУ</h3>
+                    <p>Поступление на программу дает доступ к кампусу с технической инфраструктурой и рабочими местами.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Target Audience Section -->
+    <section id="tracks" class="for-whom">
+        <div class="container">
+            <h2 class="section-title">КОМУ ПОДОЙДЕТ</h2>
+            <p class="section-subtitle">Мы ждем студентов/магистров/ординаторов/аспирантов медицинских вузов, а также специалистов в области медицины</p>
+            <div style="max-width: 600px; margin: 0 auto; background: white; padding: 40px; border-radius: 16px; box-shadow: var(--shadow); text-align: center;">
+                <p style="font-size: 1.1rem; color: var(--text-gray); margin-bottom: 0;">Для поступления на программу вам не нужно иметь навыков в сфере ИТ. Их наличие будет преимуществом.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">Что мне даст программа?</h2>
+            <div class="skills-list">
+                <ul>
+                    <li>Стать ведущим специалистом в медицине!</li>
+                    <li>Стать junior-специалистом в области биоинформатики</li>
+                    <li>Приобрести фундаментальные навыки программирования на Python</li>
+                    <li>Получить знания по этапа разработки программного обеспечения</li>
+                    <li>Иметь опыт применения ИИ для решения медицинских задач</li>
+                    <li>Научиться работать с большими объемами данных</li>
+                </ul>
+                <p style="font-size: 1.1rem; color: var(--text-gray); margin-bottom: 32px;">По окончанию программы вы получите диплом о профессиональной переподготовке по программе "Биоинформатика"</p>
+                <a href="#registration" class="btn">Зарегистрироваться</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admission Process -->
+    <section id="admission">
+        <div class="container">
+            <h2 class="section-title">КАК ПОСТУПИТЬ</h2>
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Регистрация на программу</h3>
+                        <p><strong>октябрь-ноябрь 2025 года</strong></p>
+                        <p>Зарегистрироваться в личном кабинете.</p>
+                        <a href="#registration" class="btn">Регистрация</a>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Выбор времени встречи</h3>
+                        <p>Выбрать удобное время установочной встречи в личном кабинете после регистрации.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Установочная встреча</h3>
+                        <p>Прийти на установочную встречу в кампусе или подключиться онлайн и получить информацию, необходимую для выбора трека обучения.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Отборочный этап</h3>
+                        <p><strong>2-11 декабря 2025</strong></p>
+                        <p>Пройти отборочный этап на свой трек: 10 дней очно в новом кампусе «Школы 21» и ИМО Алмазова. Участники знакомятся через проекты с языком программирования Python, приобретая ключевые навыки работы с ним.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h3>Ожидание результатов</h3>
+                        <p>Дождаться результатов отбора</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">6</div>
+                    <div class="step-content">
+                        <h3>Начало обучения</h3>
+                        <p>Начать свой путь — уже в этом семестре.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Program Tracks -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">ПРОГРАММЫ ОБУЧЕНИЯ</h2>
+            <div class="program-tracks">
+                <div class="track">
+                    <h3>ОСНОВНАЯ ПРОГРАММА</h3>
+                    <h4>Основная программа обучения "Биоинформатика и ИИ-технологии в современной медицине"</h4>
+                    <p><strong>старт 19 января, 6 месяцев с перерывом на практику/каникулы</strong></p>
+                    <p>Выполнение проектов и проверка других участников по темам:</p>
+                    <ul>
+                        <li>Молекулярной биологии</li>
+                        <li>Прикладная статистика</li>
+                        <li>Визуализация данных</li>
+                        <li>Использование ИИ в медицине</li>
+                        <li>Разработка медицинского цифрового продукта</li>
+                    </ul>
+                    <p>Проекты выполняются индивидуально или в группе</p>
+                    <p>Программа рассчитана на освоение в течение 10 часов в неделю</p>
+                    <p>Возможность обучаться гибридно</p>
+                    <p>3 встречи с экспертами-практиками в сфере MedTech</p>
+                </div>
+                <div class="track">
+                    <h3>КАРЬЕРНЫЕ ПЕРСПЕКТИВЫ</h3>
+                    <p><strong>сентябрь-ноябрь 2026 года</strong></p>
+                    <p>Подготовим к поиску работы сразу после выпуска:</p>
+                    <ul>
+                        <li>Составите пошаговый план достижения своих профессиональных целей в сфере цифровой медицины;</li>
+                        <li>Научитесь осознанно искать и анализировать вакансии, находя те, которые соответствуют вашим навыкам и устремлениям;</li>
+                        <li>Научитесь презентовать свой опыт и компетенции так, чтобы выделиться на фоне других кандидатов.</li>
+                    </ul>
+                    <p>Сможете проверить полученные знания на практике, поучаствовав в кейс-чемпионате по MedTech-направлению</p>
+                </div> 
+            </div>
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="#registration" class="btn">Зарегистрироваться</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Campus Section -->
+    <section id="campus" class="campus">
+        <div class="container">
+            <h2 class="section-title">КАМПУС</h2>
+            <p class="section-subtitle">Готовое пространство для обучения</p>
+            
+            <div class="campus-content">
+                <div class="campus-info">
+                    <p class="campus-description">Большие рабочие пространства типа open space создают атмосферу современного IT-офиса и способствуют спонтанному общению между студентами.</p>
+                    
+                    <div class="campus-features">
+                       <ul class="feature-list">
+  <li class="feature-item">
+    <div class="feature-icon">
+      <i class="fas fa-desktop"></i>
+    </div>
+    <div class="feature-text">80 рабочих мест</div>
+  </li>
+
+  <li class="feature-item">
+    <div class="feature-icon">
+      <i class="fas fa-clock"></i>
+    </div>
+    <div class="feature-text">Работа круглосуточно</div>
+  </li>
+
+  <li class="feature-item">
+    <div class="feature-icon">
+      <i class="fas fa-wifi"></i>
+    </div>
+    <div class="feature-text">Наличие WI-FI и рабочих компьютеров</div>
+  </li>
+
+  <li class="feature-item">
+    <div class="feature-icon">
+      <i class="fas fa-couch"></i>
+    </div>
+    <div class="feature-text">Зоны отдыха</div>
+  </li>
+
+  <li class="feature-item">
+    <div class="feature-icon">
+      <i class="fas fa-utensils"></i>
+    </div>
+    <div class="feature-text">Кухня</div>
+  </li>
+</ul>
+
+                    </div>
+                    
+                    <div class="campus-address">
+                        <p><strong>Адрес кампуса:</strong> Санкт-Петербург, Коломяжский пр, д. 21.</p>
+                    </div>
+                </div>
+                
+                <div class="campus-gallery">
+                    <div class="gallery-item">
+                        <div style="width: 100%; height: 100%; background: url('campus2.jpg');background-size: cover; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600;">Рабочая зона</div>
+                    </div>
+                    <div class="gallery-item">
+                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #00d4aa, #00b4d8); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600;">Зона отдыха</div>
+                    </div>
+                    <div class="gallery-item gallery-item-large">
+                       <div style="width: 100%; height: 100%; background: url('campus1.jpg');background-size: cover; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600;">Общий вид</div>
+                    </div>
+                    <div class="gallery-item">
+                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #764ba2, #667eea); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600;">Переговорная</div>
+                    </div>
+                    <div class="gallery-item">
+                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #00b4d8, #00d4aa); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600;">Кухня</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Program -->
+    <section class="about-program">
+        <div class="container">
+            <h2 class="section-title">Совместная программа НМИЦ им.Алмазова и <br> «Школы 21»</h2>
+            <div style="max-width: 900px; margin: 0 auto;">
+                <p style="font-size: 1.1rem; color: var(--text-gray); line-height: 1.7; margin-bottom: 32px;">«Школа 21» — проект Сбера для всех желающих сменить профессию и найти себя в сфере ИТ. Наши выпускники с нуля становятся полноценными IT-специалистами с широким стеком.</p>
+                <ul style="list-style: none; max-width: 800px; margin: 0 auto;">
+                    <li style="margin-bottom: 20px; padding: 24px; background: white; border-radius: 12px; box-shadow: var(--shadow); border-left: 4px solid var(--primary);">На платформе «Школы 21» участники погружаются в реальные условия разработки</li>
+                    <li style="margin-bottom: 20px; padding: 24px; background: white; border-radius: 12px; box-shadow: var(--shadow); border-left: 4px solid var(--secondary);">Проекты «Школы 21» максимально приближены к задачам разработчиков в ИТ-компаниях</li>
+                    <li style="margin-bottom: 20px; padding: 24px; background: white; border-radius: 12px; box-shadow: var(--shadow); border-left: 4px solid var(--accent);">В процессе обучения участники учат работать в сжатые сроки, самостоятельно искать информацию, обмениваться обратной связью с другими участниками</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration -->
+    <section id="registration" class="registration-section">
+        <div class="container">
+            <h2 class="section-title">Регистрация</h2>
+            <p class="section-subtitle">Чтобы попасть на Отборочный этап необходимо пройти все этапы регистрации</p>
+            <div class="registration-form">
+                <form id="reg-form">
+                    <div class="form-group">
+                        <label for="email">Почта</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">ФИО</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Номер телефона</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+
+                        <div class="form-group">
+                        <label style="display: flex; align-items: flex-start; gap: 12px; font-weight: 400; line-height: 1.5; cursor: pointer;">
+                            <input type="checkbox" id="privacy" name="privacy" required style="width: auto; margin-top: 4px; transform: scale(1.2);">
+                            <span style="font-size: 14px; color: var(--text-gray);">Я подтверждаю, что ознакомился с <a href="#" style="color: var(--primary); text-decoration: underline;">политикой конфиденциальности</a> и согласен на обработку персональных данных</span>
+                        </label>
+                    </div>
+
+
+                    <button type="submit" class="btn" style="width: 100%; justify-content: center;">Отправить заявку</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+        <div class="container">
+            <h2 class="section-title">Ответы на вопросы</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">Какие документы необходимы для обучения?</div>
+                    <div class="faq-answer">
+                        <p>В первый день интенсива необходимо принести оригиналы документов: копию паспорта, согласие на прохождение отборочных испытаний, согласие на обработку персональных данных. Документы необходимо будет отдать волонтерам на входе в кампус перед началом отборочного этапа.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Есть ли требования предъявляют поступающим? Проходит ли отбор?</div>
+                    <div class="faq-answer">
+                        <p>Необходимо быть специалистом в области медицины. После регистрации на сайте будет проведена онлайн-встреча с представителями кампуса. Затем необходимо пройти очный 10-дневный отборочный интенсив. По итогам отбора лучшие участники зачисляются в программу.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Как организовано обучение?</div>
+                    <div class="faq-answer">
+                        <p>Кампус работает круглосуточно, основной формат — гибридный. Все этапы позволяют совмещать учебу в кампусе с обучением в вузе.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Можно ли совмещать обучение в кампусе с основной учебой?</div>
+                    <div class="faq-answer">
+                        <p>Да, кампус работает 24/7; проекты и занятия можно выполнять в удобное время.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Можно ли пройти обучение дистанционно?</div>
+                    <div class="faq-answer">
+                        <p>Очное присутствие обязательно только на отборочном интенсиве. В дальнейшем обучение организовано в гибридном формате, возможна дистанционная реализация отдельных заданий.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Будет ли помощь с трудоустройством после программы?</div>
+                    <div class="faq-answer">
+                        <p>В рамках программы предусмотрен карьерный трек: проекты по созданию резюме, карьерной стратегии, подготовке к интервью и встречам с отраслевыми экспертами.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Как связаться с командой кампуса для получения дополнительной информации?</div>
+                    <div class="faq-answer">
+                        <p>Обратитесь по электронной почте: 21-school@rudn.ru.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contacts">
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo-container">
+                    <img src="school21_logo1white.svg" alt="Школа 21" class="logo">
+                <img src="newlogo 2.svg" alt="НМИЦ им. В.А. Алмазова" class="logo">
+                </div>
+                <div class="footer-links">
+                    <a href="#">Правила участия</a>
+                    <a href="#">Политика обработки персональных данных</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Почта для связи: 21-school@rudn.ru</p>
+                <p>&copy; 2025 Школа 21 и НМИЦ им. В.А. Алмазова. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('nav').classList.toggle('active');
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    document.querySelector('nav').classList.remove('active');
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // FAQ accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                this.parentElement.classList.toggle('active');
+            });
+        });
+        
+        // Form submission
+        document.getElementById('reg-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Ваша заявка отправлена! Мы свяжемся с вами в ближайшее время.');
+            this.reset();
+        });
+
+        // Floating elements animation
+        function createFloatingElements() {
+            const container = document.querySelector('.floating-elements');
+            setInterval(() => {
+                if (container.children.length < 8) {
+                    const element = document.createElement('div');
+                    element.className = 'floating-element';
+                    // element.textContent = Math.floor(Math.random() * 10);
+                    element.style.left = Math.random() * 100 + '%';
+                    element.style.width = Math.random() * 20 + 10 + 'px';
+                    element.style.height = element.style.width;
+                    container.appendChild(element);
+                    
+                    setTimeout(() => {
+                        if (element.parentNode) {
+                            element.parentNode.removeChild(element);
+                        }
+                    }, 20000);
+                }
+            }, 3000);
+        }
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+
+        // Initialize animations
+        createFloatingElements();
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.benefit-card, .track, .step').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
