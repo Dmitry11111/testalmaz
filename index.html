@@ -4,18 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Школа 21 и НМИЦ им. В.А. Алмазова | Биоинформатика и ИИ-технологии в медицине</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link
+        rel="stylesheet"
+        href="https://cdn-app.sberdevices.ru/shared-static/0.0.0/styles/SBSansText.0.2.0.css"
+        crossorigin="anonymous"
+        type="text/css"
+    />
    <link rel="stylesheet" href="css/fontawesome.min.css">
    <link rel="stylesheet" href="css/solid.min.css"> <!-- для "fas" -->
     <style>
         :root {
-            --primary: #0066cc;
+            --primary: #0087cd;
+            /* --primary: #0066cc; */
             --primary-dark: #0052a3;
             --secondary: #00d4aa;
             --secondary-dark: #00b08a;
-            --accent: #667eea;
-            --dark: #1a1a1a;
+            --accent: #44eb99;
+            /* --accent: #667eea; */
+            --dark: #212121;
+            /* --dark: #1a1a1a; */
             --text-gray: #4a5568;
             --light-gray: #f8fafc;
             --white: #ffffff;
@@ -32,7 +39,7 @@
         }
         
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'SB Sans Text', Arial, sans-serif;
             line-height: 1.6;
             color: var(--dark);
             overflow-x: hidden;
@@ -47,7 +54,8 @@
         
         /* Header */
         header {
-            background: rgba(255, 255, 255, 0.95);
+            /* background: rgba(255, 255, 255, 0.95); */
+            background: rgba(255, 255, 255,255);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(0, 0, 0, 0.1);
             position: fixed;
@@ -78,6 +86,20 @@
         .logo:hover {
             transform: scale(1.05);
         }
+
+        .vertical-divider {
+    width: 2px;
+    height: 48px; /* такая же высота как у логотипов */
+    background-color: #000000; /* цвет линии */
+    margin: 0 8px; /* отступы вокруг линии */
+}
+
+ .vertical-divider1 {
+    width: 2px;
+    height: 48px; /* такая же высота как у логотипов */
+    background-color: #ffffff; /* цвет линии */
+    margin: 0 8px; /* отступы вокруг линии */
+}
         
         nav ul {
             display: flex;
@@ -189,7 +211,7 @@
             background: rgba(0, 56, 102, 0.2);
             opacity: 0.8;}
         .hero-content {
-             padding-top: 60px;  /* отступ сверху от шапки */
+            padding-top: 60px;  /* отступ сверху от шапки */
             position: relative;
             z-index: 2;
             text-align: center;
@@ -212,20 +234,26 @@
         .hero h3 {
             font-size: clamp(1.2rem, 2.5vw, 1.5rem);
             font-weight: 500;
-            margin-bottom: 20px;
+            /* margin-bottom: 20px;
+            margin-top: 10px; */
             opacity: 0.9;
             line-height: 1.4;
         }
         
         .hero p {
             font-size: clamp(1rem, 2vw, 1.1rem);
+            margin-top: 32px;
             margin-bottom: 32px;
             opacity: 0.8;
             max-width: 800px;
             margin-left: auto;
             margin-right: auto;
             line-height: 1.6;
-        }
+              /* border: 2px solid #fff;
+  padding: 5px; 
+    border-radius: 8px; закругленные углы */
+}
+        
         
         .hero .btn {
             font-size: 16px;
@@ -332,7 +360,12 @@
   font-size: 1.1rem;
 }
 
-
+.for-whom .square {
+    position: absolute;
+    border-radius: 4px;  /* это закругление */
+    opacity: 0.6;
+    animation: float 6s ease-in-out infinite;
+}
         /* Benefits Grid */
         .benefits-grid {
             display: grid;
@@ -380,11 +413,27 @@
         }
         
         /* Steps Section */
-        .steps-container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        
+       .steps-container {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    /* overflow: hidden; - убрать эту строку */
+}
+
+.steps-container::before { /* Используем ::before */
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: 
+        url("catschool21.svg") no-repeat right 40px top 20px,
+        url("compschool21.svg") no-repeat left 40px bottom 20px;
+    background-size: 250px, 150px;
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: -1; /* За контентом */
+}
+
+
         .step {
             display: flex;
             gap: 32px;
@@ -663,9 +712,60 @@
         
         /* Registration Form */
         .registration-section {
-            background: linear-gradient(135deg, var(--light-gray), #e2e8f0);
+            background: linear-gradient(135deg, var(--primary), var(--accent));
         }
-        
+
+
+
+
+.registration-section::after {
+  
+  content: "";
+  position: absolute;
+  inset: 0; /* заменяет top/right/bottom/left: 0 */
+  background: 
+    url("school21pattern1.svg") no-repeat right 40px top 20px,
+    url("newlogo123.svg") no-repeat left 40px bottom 20px;
+  background-size: 250px, 180px; /* размеры для первой и второй картинки */
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.registration-section {
+    position: relative;
+    overflow: hidden;
+}
+
+.registration-section .square {
+    position: absolute;
+    opacity: 0.6;
+    animation: float 6s ease-in-out infinite;
+}
+
+        .registration-section .section-subtitle {
+        color: #fff;
+        }
+        .registration-section .section-title {
+        color: #fff;
+        }
         .registration-form {
             max-width: 600px;
             margin: 0 auto;
@@ -673,8 +773,9 @@
             padding: 48px;
             border-radius: var(--border-radius);
             box-shadow: var(--shadow-lg);
+            position: relative; z-index: 1;
         }
-        
+      
         .form-group {
             margin-bottom: 24px;
         }
@@ -901,7 +1002,8 @@
         <div class="container header-container">
             <div class="logo-container">
                 <img src="school21_logo1.svg" alt="Школа 21" class="logo">
-                <img src="logo_finalmaz1.svg" alt="НМИЦ им. В.А. Алмазова" class="logo">
+                 <div class="vertical-divider"></div>
+                <img src="logo_finalmaz1mono.svg" alt="НМИЦ им. В.А. Алмазова" class="logo">
             </div>
             <button class="mobile-menu-btn">☰</button>
             <nav>
@@ -931,7 +1033,7 @@
                 <h1>НАУЧИСЬ СОЗДАВАТЬ БУДУЩЕЕ С ПОМОЩЬЮ ИИ</h1>
                 <h2>Совместный кампус ИМО и «Школы 21». Синергия науки, индустрии и практики.</h2>
                 <p>Стартуйте карьеру будущего в сфере цифровой медицины вместе с совместным кампусом «Школы 21» и НМИЦ им. В.А. Алмазова. Получите практические навыки в области биоинформатики, анализа данных и ИИ, необходимые для успешной карьеры в современной медицине.</p>
-                <p><strong>Старт: 2 декабря 2025</strong></p>
+                <h3><strong>Старт: 2 декабря 2025</strong></h3>
                 <a href="#registration" class="btn">Зарегистрироваться</a>
             </div>
         </div>
@@ -976,7 +1078,7 @@
         <div class="container">
             <h2 class="section-title">КОМУ ПОДОЙДЕТ</h2>
             <p class="section-subtitle">Мы ждем студентов/магистров/ординаторов/аспирантов медицинских вузов, а также специалистов в области медицины</p>
-            <div style="max-width: 600px; margin: 0 auto; background: white; padding: 40px; border-radius: 16px; box-shadow: var(--shadow); text-align: center;">
+            <div style="position: relative; z-index: 1;max-width: 600px; margin: 0 auto; background: white; padding: 40px; border-radius: 16px; box-shadow: var(--shadow); text-align: center;">
                 <p style="font-size: 1.1rem; color: var(--text-gray); margin-bottom: 0;">Для поступления на программу вам не нужно иметь навыков в сфере ИТ. Их наличие будет преимуществом.</p>
             </div>
         </div>
@@ -1188,7 +1290,7 @@
 
     <!-- Registration -->
     <section id="registration" class="registration-section">
-        <div class="container">
+         <div class="container">
             <h2 class="section-title">Регистрация</h2>
             <p class="section-subtitle">Чтобы попасть на Отборочный этап необходимо пройти все этапы регистрации</p>
             <div class="registration-form">
@@ -1264,7 +1366,7 @@
                 <div class="faq-item">
                     <div class="faq-question">Как связаться с командой кампуса для получения дополнительной информации?</div>
                     <div class="faq-answer">
-                        <p>Обратитесь по электронной почте: 21-school@rudn.ru.</p>
+                        <p>Обратитесь по электронной почте: school21@almazovcentre.ru.</p>
                     </div>
                 </div>
             </div>
@@ -1277,6 +1379,7 @@
             <div class="footer-content">
                 <div class="logo-container">
                     <img src="school21_logo1white.svg" alt="Школа 21" class="logo">
+                    <div class="vertical-divider1"></div>
                 <img src="newlogo 2.svg" alt="НМИЦ им. В.А. Алмазова" class="logo">
                 </div>
                 <div class="footer-links">
@@ -1285,7 +1388,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>Почта для связи: 21-school@rudn.ru</p>
+                <p>Почта для связи: school21@almazovcentre.ru</p>
                 <p>&copy; 2025 Школа 21 и НМИЦ им. В.А. Алмазова. Все права защищены.</p>
             </div>
         </div>
@@ -1389,5 +1492,44 @@
             observer.observe(el);
         });
     </script>
+
+<script>
+     const containers = document.querySelectorAll('.for-whom,.registration-section');
+const colors = ['#861BE3', '#44EB99'];
+const squareCount = 30;
+
+function createSquare(container1) {
+    const square = document.createElement('div');
+    square.className = 'square';
+    
+    const size = 20;
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    const top = Math.random() * 100;
+    const left = Math.random() * 100;
+    const duration = Math.random() * 4 + 4;
+    const delay = Math.random() * 3;
+    
+    square.style.width = `${size}px`;
+    square.style.height = `${size}px`;
+    square.style.backgroundColor = color;
+    square.style.top = `${top}%`;
+    square.style.left = `${left}%`;
+    square.style.animationDuration = `${duration}s`;
+    square.style.animationDelay = `${delay}s`;
+    
+    container1.appendChild(square);
+}
+
+// Применяем квадратики к каждой найденной секции
+containers.forEach(container1 => {
+    for (let i = 0; i < squareCount; i++) {
+        createSquare(container1);
+    }
+});
+    </script>
+
+
+
+
 </body>
 </html>
